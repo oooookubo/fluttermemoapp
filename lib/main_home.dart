@@ -1,23 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class NoteAppHome extends StatefulWidget {
+  NoteAppHome({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _NoteAppHomeState createState() => _NoteAppHomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _NoteAppHomeState extends State<NoteAppHome> {
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // Add your onPressed code here!
           },
           label: Text('new page'),
-          icon: Icon(Icons.thumb_up),
+          icon: Icon(Icons.add),
           backgroundColor: Colors.green,
         ),
     );

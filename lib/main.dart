@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Memo App'),
+      home: NoteAppHome(title: 'Flutter Memo App'),
     );
   }
 }
