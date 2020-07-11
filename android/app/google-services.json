@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "825822318758",
+    "firebase_url": "https://flutternoteapp-1246b.firebaseio.com",
+    "project_id": "flutternoteapp-1246b",
+    "storage_bucket": "flutternoteapp-1246b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825822318758:android:1afa374e1b4ca3bbfee467",
+        "android_client_info": {
+          "package_name": "com.example.flutter_note_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825822318758-dc31aa5vstpm7tgh8c1a14hj0sbg2lof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAurH6v9ps-LPpJFh_KKuenFkSTPBPSU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825822318758-dc31aa5vstpm7tgh8c1a14hj0sbg2lof.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "825822318758-vs29aa1c6g6gc1rsap3768ej0t4o36k4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterNoteApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
