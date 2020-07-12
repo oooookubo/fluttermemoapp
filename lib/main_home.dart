@@ -2,55 +2,93 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app/book_list_page.dart';
+import 'package:provider/provider.dart';
 
-class NoteAppHome extends StatefulWidget {
-  NoteAppHome({Key key, this.title}) : super(key: key);
+import 'add_book_model.dart';
+import 'add_book_page.dart';
+import 'book_list_model.dart';
 
-  final String title;
-
-  @override
-  _NoteAppHomeState createState() => _NoteAppHomeState();
-}
-
-class _NoteAppHomeState extends State<NoteAppHome> {
-
+class BookListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection('books').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError)
-            return Text('Error: ${snapshot.error}');
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting: return  Text('Loading...');
-            default:
-              return  ListView(
-                children: snapshot.data.documents.map((DocumentSnapshot document) {
-                  return  ListTile(
-                    title: Text(document["title"]),
-                  );
-                }).toList(),
-              );
-          }
-        },
-      ),
-
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => BookPage()),
-            );
-            // Add your onPressed code here!
-          },
-          label: Text('new page'),
-          icon: Icon(Icons.add),
-          backgroundColor: Colors.green,
+    return ChangeNotifierProvider<BookListModel>(
+      create: (_) =>
+      BookListModel()
+        ..fetchBooks(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('本一覧'),
         ),
+        body: Consumer<BookListModel>(
+          builder: (context, model, child) {
+            final books = model.books;
+            final listTiles = books
+                .map(
+                  (book) =>
+                  ListTile(
+                    title: Text(book.title),
+                    trailing: IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () async {
+                        // todo: 画面遷移
+
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AddBookPage(
+                                ),
+                            fullscreenDialog: true,
+                          ),
+                        );
+                        model.fetchBooks();
+                      },
+                    ),
+                    onLongPress: () async {
+                      // todo: 削除
+                      await showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('${book.title}を削除しますか？'),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text('OK'),
+                                onPressed: () async {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+            )
+                .toList();
+            return ListView(
+              children: listTiles,
+            );
+          },
+        ),
+        floatingActionButton:
+        Consumer<BookListModel>(builder: (context, model, child) {
+          return FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () async {
+              // todo
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddBookPage(),
+                  fullscreenDialog: true,
+                ),
+              );
+              model.fetchBooks();
+            },
+          );
+        }),
+      ),
     );
   }
 }

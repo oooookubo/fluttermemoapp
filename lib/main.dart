@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: NoteAppHome(title: 'Flutter Memo App'),
+      home: BookListPage(),
     );
   }
 }
