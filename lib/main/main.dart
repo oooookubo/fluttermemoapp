@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'book_list_page.dart';
-import 'main_home.dart';
+import '../book_list/book_list_page.dart';
 
 void main() => runApp(MyApp());
 

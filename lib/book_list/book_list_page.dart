@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_note_app/book_list_page.dart';
+import 'package:flutter_note_app/book_list/book_list_page.dart';
 import 'package:provider/provider.dart';
-
-import 'add_book_model.dart';
-import 'add_book_page.dart';
+import '../add_book/add_book_page.dart';
 import 'book_list_model.dart';
 
 class BookListPage extends StatelessWidget {
@@ -17,7 +15,7 @@ class BookListPage extends StatelessWidget {
         ..fetchBooks(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('本一覧'),
+          title: Text('QA Stock'),
         ),
         body: Consumer<BookListModel>(
           builder: (context, model, child) {
