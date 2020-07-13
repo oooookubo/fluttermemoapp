@@ -35,6 +35,7 @@ class BookListPage extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) =>
                                 AddBookPage(
+                                  book: book,
                                 ),
                             fullscreenDialog: true,
                           ),
